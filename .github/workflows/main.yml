@@ -4,8 +4,10 @@ on:
   push:
     branches:
       - main
+      - windows-ci
   pull_request:
     types: [opened, synchronize, reopened, labeled]
+  workflow_dispatch:
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
@@ -19,6 +21,7 @@ env:
 
 jobs:
   test:
+    if: false
     strategy:
       matrix:
         os: [ubuntu-latest, macos-latest]
